@@ -50,14 +50,15 @@
             />
           </mat-form-field>
 
-          <mat-form-field class="full-width"
-            ><input
+          <mat-form-field class="full-width">
+            <textarea
               type="text"
               matInput
               placeholder="Description"
               [(ngModel)]="selectedCourse.description"
               name="description"
-          /></mat-form-field>
+            ></textarea>
+          </mat-form-field>
           <label for="percentComplete"
             >Percent Completed:
             <span class="align-right">{{
