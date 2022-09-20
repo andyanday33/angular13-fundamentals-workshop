@@ -37,7 +37,7 @@
           <ng-template #elseBlock>Select a Course</ng-template>
         </mat-card-title>
       </mat-card-header>
-      <form #form="ngForm">
+      <form #form="ngForm" (submit)="saveCourse(selectedCourse)">
         <mat-card-content>
           <mat-form-field class="full-width">
             <input
@@ -82,6 +82,7 @@
           ></mat-checkbox>
         </mat-card-content>
         <mat-card-actions>
+          <button type="submit" mat-button color="primary">Save</button>
           <button type="button" mat-button (click)="reset()">Cancel</button>
         </mat-card-actions>
       </form>

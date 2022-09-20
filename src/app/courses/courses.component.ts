@@ -19,7 +19,7 @@ export class CoursesComponent implements OnInit {
   // SELECT A COURSE
   // RENDER SELECTED COURSE
 
-  courses = [
+  courses: Course[] = [
     {
       id: 1,
       title: 'Angular 13 Fundamentals',
@@ -45,8 +45,14 @@ export class CoursesComponent implements OnInit {
     this.selectedCourse = { ...course };
   }
 
-  deleteCourse(id: number) {
+  deleteCourse(id: number | string) {
     this.courses = this.courses.filter((course) => course.id !== id);
+  }
+
+  saveCourse(newCourse: Course) {
+    this.courses = this.courses.map((course) =>
+      course.id === newCourse.id ? newCourse : course
+    );
   }
 
   reset() {
