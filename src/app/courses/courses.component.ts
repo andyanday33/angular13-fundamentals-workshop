@@ -36,6 +36,7 @@ export class CoursesComponent implements OnInit {
     },
   ];
   selectedCourse = emptyCourse;
+  originalTitle = '';
 
   constructor() {}
 
@@ -43,6 +44,7 @@ export class CoursesComponent implements OnInit {
 
   selectCourse(course: Course) {
     this.selectedCourse = { ...course };
+    this.originalTitle = course.title;
   }
 
   deleteCourse(id: number | string) {
