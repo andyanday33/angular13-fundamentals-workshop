@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Lesson } from '../common/models/lesson';
 import { LessonsService } from '../common/services/lessons.service';
 
 @Component({
@@ -8,6 +10,7 @@ import { LessonsService } from '../common/services/lessons.service';
 })
 export class HomeComponent implements OnInit {
   courseLessons = [];
+  lessons$: Observable<Lesson>;
 
   selectedLesson = null;
 
@@ -15,6 +18,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.courseLessons = this.lessonsService.lessons;
+    this.lessons$ = this.lessonsService.lessons$;
   }
 
   selectLesson(lesson) {

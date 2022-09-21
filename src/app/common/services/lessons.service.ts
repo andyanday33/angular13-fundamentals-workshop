@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { from } from 'rxjs';
+import { Lesson } from '../models/lesson';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LessonsService {
-  lessons = [
+  lessons: Lesson[] = [
     { title: 'Hello Angular' },
     { title: 'Component Fundamentals' },
     { title: 'Template Driven Forms' },
@@ -14,4 +16,6 @@ export class LessonsService {
     { title: 'Angular Routing' },
     { title: 'Unit Testing Fundamentals' },
   ];
+
+  lessons$ = from(this.lessons);
 }

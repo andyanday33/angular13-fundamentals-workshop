@@ -27,7 +27,13 @@ export class CoursesComponent implements OnInit {
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit(): void {
-    this.courses = this.coursesService.courses;
+    this.fetchCourses();
+  }
+
+  fetchCourses() {
+    this.coursesService
+      .all()
+      .subscribe((result: Course[]) => (this.courses = result));
   }
 
   selectCourse(course: Course) {
@@ -36,13 +42,27 @@ export class CoursesComponent implements OnInit {
   }
 
   deleteCourse(id: number | string) {
-    this.courses = this.courses.filter((course) => course.id !== id);
+    this.coursesService.delete(id);
   }
 
   saveCourse(newCourse: Course) {
-    this.courses = this.courses.map((course) =>
-      course.id === newCourse.id ? newCourse : course
-    );
+    if (newCourse.id) {
+      this.updateCourse(newCourse);
+    } else {
+      this.createCourse(newCourse);
+    }
+  }
+
+  createCourse(newCourse: Course) {
+    this.coursesService
+      .create(newCourse)
+      .subscribe((result) => this.fetchCourses());
+  }
+
+  updateCourse(updatedCourse: Course) {
+    this.coursesService
+      .update(updatedCourse)
+      .subscribe((result) => this.fetchCourses());
   }
 
   reset() {

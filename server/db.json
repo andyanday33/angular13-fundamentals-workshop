@@ -6,6 +6,19 @@
       "description": "Learn the fundamentals of Angular 13",
       "percentComplete": 26,
       "favorite": true
+    },
+    {
+      "id": 2,
+      "title": "React Fundamentals",
+      "description": "React 18 Fundamentals Course",
+      "percentComplete": 10,
+      "favorite": true
+    }
+  ],
+  "lessons": [
+    {
+      "id": "1",
+      "title": "Component Driven Architecture"
     }
   ]
 }
