@@ -21,7 +21,6 @@ export class CoursesComponent implements OnInit {
   // RENDER SELECTED COURSE
 
   selectedCourse = emptyCourse;
-  originalTitle = '';
   courses: Course[] = [];
 
   constructor(private coursesService: CoursesService) {}
@@ -37,8 +36,7 @@ export class CoursesComponent implements OnInit {
   }
 
   selectCourse(course: Course) {
-    this.selectedCourse = { ...course };
-    this.originalTitle = course.title;
+    this.selectedCourse = course;
   }
 
   deleteCourse(id: number | string) {

@@ -1,1 +1,69 @@
-<p>course-details works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span *ngIf="currentCourse?.id; else elseBlock">{{
+        originalTitle | titlecase
+      }}</span>
+      <ng-template #elseBlock>Select a Course</ng-template>
+    </mat-card-title>
+  </mat-card-header>
+  <form #form="ngForm" (submit)="save.emit(currentCourse)">
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input
+          type="text"
+          matInput
+          placeholder="Title"
+          [(ngModel)]="currentCourse.title"
+          name="title"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea
+          type="text"
+          matInput
+          placeholder="Description"
+          [(ngModel)]="currentCourse.description"
+          name="description"
+        ></textarea>
+      </mat-form-field>
+      <label for="percentComplete"
+        >Percent Completed:
+        <span class="align-right">{{
+          currentCourse.percentComplete
+        }}</span></label
+      >
+      <mat-slider
+        class="full-width"
+        name="percentComplete"
+        min="0"
+        max="100"
+        step="0.5"
+        thumbLabel
+        tickInterval="1"
+        [(ngModel)]="currentCourse.percentComplete"
+      ></mat-slider>
+      <label for="favorite">Favorite:</label>
+      <mat-checkbox
+        name="favorite"
+        [(ngModel)]="currentCourse.favorite"
+      ></mat-checkbox>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        mat-button
+        color="primary"
+      >
+        Save
+      </button>
+      <button type="button" mat-button (click)="cancel.emit()">Cancel</button>
+    </mat-card-actions>
+  </form>
+  <hr />
+  <pre>{{ form.value | json }}</pre>
+  <pre>{{ form.valid | json }}</pre>
+</mat-card>
